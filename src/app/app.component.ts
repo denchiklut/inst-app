@@ -8,12 +8,5 @@ import {UsersService} from './users.service';
   providers: [UsersService]
 })
 export class AppComponent {
-  users = [];
-  searchStr = '';
-
-  constructor(private userService: UsersService) {
-    this.userService.getUsers().subscribe(users =>
-      this.users = users);
-  }
 
 }

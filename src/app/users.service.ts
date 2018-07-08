@@ -5,10 +5,16 @@ import {map} from 'rxjs/operators';
 @Injectable()
 export class UsersService {
 
+  size = 8;
+
   constructor(private httpClient: HttpClient) {}
 
+  setSize(s) {
+    this.size = s;
+  }
+
   getUsers() {
-    return this.httpClient.get('https://randomuser.me/api/?inc=gender,name,picture,location&results=8&nat=gb%27')
+    return this.httpClient.get('https://randomuser.me/api/?inc=gender,name,picture,location&results=' + this.size + '&nat=gb%27')
       .pipe(map(respose => respose as any[] || []))
       .pipe(map(respose => respose['results']))
       .pipe(map(users => {
